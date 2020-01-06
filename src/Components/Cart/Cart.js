@@ -4,6 +4,7 @@ import CartColumn from "./CartColumn";
 import EmptyCart from './EmptyCart';
 import { ProductConsumer } from '../../Context';
 import CartList from './CartList';
+import CartTotals from './CartTotals'
 
 
 class Cart extends Component {
@@ -11,14 +12,15 @@ class Cart extends Component {
         return (
             <section>
                 <ProductConsumer>
-                    { values=> {
-                        const {cart} = values;
+                    { value=> {
+                        const {cart} = value;
                         if (cart.length>0) {
                             return (
                             <React.Fragment>
                                 <Title name="your" title="cart" />
                                 <CartColumn />
-                                <CartList value={values} />
+                                <CartList value={value} />
+                                <CartTotals value={value} history ={this.props.history}/>
                             </React.Fragment>
                             );
                         }
